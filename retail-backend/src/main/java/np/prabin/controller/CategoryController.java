@@ -18,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1.0/category")
 public class CategoryController {
-// CRUD APIS for category
     private final CategoryService categoryService;
 
     @PostMapping
