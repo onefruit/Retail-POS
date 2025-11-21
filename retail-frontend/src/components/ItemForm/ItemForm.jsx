@@ -1,8 +1,8 @@
-import React from "react";
 
-const CategoryForm = () => {
+const ItemForm = () => {
   return (
-    <div className="mx-2 mt-2">
+     <div className="item-form-container" style={{height: '100vh', overflowY:'auto', overflowX:'hidden'}}>
+        <div className="mx-2 mt-2">
       <div className="card col-md-8 form-container">
         <div className="card-body">
           <form>
@@ -27,7 +27,31 @@ const CategoryForm = () => {
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Category Name"
+                placeholder="Item Name"
+                className="form-control"
+              />
+            </div>
+
+            <div className="mb-3">
+
+                <label htmlFor="category" className="form-label">Category</label>
+                <select name="category" id="category" className="form-control">
+                    <option value="">--Select Category--</option>
+                    <option value="category1">Category1</option>
+                    <option value="category1">Category2</option>
+
+                </select>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="price" className="form-label">
+                Price
+              </label>
+              <input
+                type="number"
+                name="price"
+                id="price"
+                placeholder="Rs. 1000"
                 className="form-control"
               />
             </div>
@@ -47,21 +71,15 @@ const CategoryForm = () => {
               />
             </div>
             
-            <div className="mb-3">
-                <label htmlFor="bgcolor" className="form-label">Background Color</label>
-                <br />
-                <input type="color" name="bgColor"
-                id="bgColor"
-                placeholder="#ffffff" />
-            </div>
-
+        
             <button type="submit" className="btn btn-primary w-100">Save</button>
 
           </form>
         </div>
       </div>
     </div>
+  </div>
   );
-};
+}
 
-export default CategoryForm;
+export default ItemForm;

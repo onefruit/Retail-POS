@@ -7,7 +7,7 @@ const UserForm = () => {
         <div className="card-body">
           <form>
             <div className="mb-3">
-              <label htmlFor="name" className="fomr-label">
+              <label htmlFor="name" className="form-label">
                 Name
               </label>
               <input
@@ -20,7 +20,7 @@ const UserForm = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="email" className="fomr-label">
+              <label htmlFor="email" className="form-label">
                 Email
               </label>
               <input
@@ -33,7 +33,7 @@ const UserForm = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="password" className="fomr-label">
+              <label htmlFor="password" className="form-label">
                 Password
               </label>
               <input
