@@ -5,6 +5,7 @@ import np.prabin.dto.request.CategoryRequest;
 import np.prabin.dto.response.CategoryResponse;
 import np.prabin.model.Category;
 import np.prabin.repo.CategoryRepository;
+import np.prabin.repo.ItemRepository;
 import np.prabin.service.CategoryService;
 import np.prabin.service.FileUploadService;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
     private final FileUploadService fileUploadService;
     private final CategoryRepository categoryRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public CategoryResponse add(CategoryRequest request, MultipartFile file) {
@@ -43,8 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(String  categoryId) {
-        Category category = categoryRepository.findByCategoryId(categoryId).orElseThrow(()-> new RuntimeException("Category not found"));
+    public void deleteCategory(String categoryId) {
+        Category category = categoryRepository.findByCategoryId(categoryId).orElseThrow(() -> new RuntimeException("Category not found"));
         fileUploadService.deleteFile(category.getImgUrl());
         categoryRepository.delete(category);
     }
@@ -59,6 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     private CategoryResponse convertToResponse(Category category) {
+        Integer itemsCount = itemRepository.countByCategoryId(category.getId());
         return CategoryResponse.builder()
                 .categoryId(category.getCategoryId())
                 .name(category.getName())
@@ -67,6 +70,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .imgUrl(category.getImgUrl())
                 .createdAt(category.getCreatedAt())
                 .updatedAt(category.getUpdatedAt())
+                .items(itemsCount)
                 .build();
     }
 

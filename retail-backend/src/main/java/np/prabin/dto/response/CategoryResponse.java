@@ -1,12 +1,15 @@
 package np.prabin.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 import java.sql.Timestamp;
 
-@Data
 @Builder
+@AllArgsConstructor
+@Getter
 public class CategoryResponse {
     private String categoryId;
     private String name;
@@ -15,4 +18,5 @@ public class CategoryResponse {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private String imgUrl;
+    private Integer items;
 }
