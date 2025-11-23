@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemController {
 
-    private final ItemService itemService;
+    private final    ItemService itemService;
 
     @PostMapping("/admin/items")
     public ResponseEntity<ItemResponse> addItem(
