@@ -51,6 +51,7 @@ public class SecurityConfig {
                                 .requestMatchers(PUBLIC_URLS).permitAll()
                                 .requestMatchers("/auth/login").permitAll()
                                 .requestMatchers("/category","/items","/order").hasAnyRole("USER","ADMIN")
+                                .requestMatchers("/order/success").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
