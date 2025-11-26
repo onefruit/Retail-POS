@@ -8,8 +8,12 @@ import np.prabin.model.Order;
 import np.prabin.model.OrderItem;
 import np.prabin.model.PaymentMethod;
 import np.prabin.repo.OrderRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,5 +96,22 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAllByOrderByCreatedAtDesc()
                 .stream().map(this::convertToResponse).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public Double sumSalesByDate(LocalDate date) {
+        return orderRepository.sumSalesByDate(date);
+    }
+
+    @Override
+    public Long countByOrderDate(LocalDate date) {
+        return orderRepository.countByOrderDate(date);
+    }
+
+    @Override
+    public List<OrderResponse> findRecentOrders() {
+        return orderRepository.findRecentOrders(PageRequest.of(0, 5))
+                .stream()
+                .map(order -> convertToResponse(order)).collect(Collectors.toList());
     }
 }
